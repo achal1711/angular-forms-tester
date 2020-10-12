@@ -1,0 +1,15 @@
+.container{
+    margin-top: 5%;
+}
+
+.btn-danger{
+    float:right;
+}
+
+@media only screen and (max-width: 768px) {
+    .container:first-child{
+        margin-top: 30%;
+        width: 100%;
+        float: none;
+    }
+}
