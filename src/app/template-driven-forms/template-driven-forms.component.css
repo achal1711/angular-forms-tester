@@ -2,8 +2,33 @@
     margin-top: 5%;
 }
 
-.btn-danger{
-    float:right;
+.fa-check
+{
+    color:green;
+}
+
+.btn-danger
+{
+    float: right;
+}
+
+input{
+    display: inline-block;
+}
+
+.fa-times
+{
+    color: #dc143c;
+    float: right;
+    cursor: pointer;
+}
+
+input.ng-invalid{
+    border-left: 5px solid red;
+}
+
+input.ng-valid{
+    border-left: 5px solid green;
 }
 
 @media only screen and (max-width: 768px) {

@@ -3,7 +3,17 @@
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
         <div class="form-group">
             <label>Name</label>
-            <input type="text"  class="form-control" name="name" [(ngModel)]="myName">
+            <input type="text" #nameRefVar="ngModel" class="form-control" name="name" minlength="2" 
+            [(ngModel)]="myName" required>
+
+            <div *ngIf="nameRefVar.errors && (nameRefVar.dirty || nameRefVar.touched)" class="alert alert-danger">
+                <div [hidden]="!nameRefVar.errors.required">
+                    Please enter a name
+                </div>
+                <div [hidden]="!nameRefVar.errors.minlength">
+                    Then name must contain 2 characters
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label>Email</label>
@@ -20,7 +30,15 @@
             </div>
             <div class="form-group">
                 <label>Postal Code</label>
-                <input type="text"  class="form-control" name="postalCode" [(ngModel)]="myPostal">
+                <input type="text" #postalCode="ngModel" pattern="^[1-9][0-9]{4}$" 
+                class="form-control" name="postalCode" [(ngModel)]="myPostal">
+
+                <div *ngIf="postalCode.errors && (postalCode.dirty || postalCode.touched)"
+                 class="alert alert-danger">
+                    <div [hidden]="!postalCode.errors.pattern">
+                        Please enter a five digit postal code
+                    </div>
+                </div>
             </div>
         </div>
         <button type="submit"  class="btn btn-primary">Submit</button>
@@ -29,7 +47,7 @@
     </form>
 </div>
 <div class="container"  [style.float]="float" [style.width]="width" *ngIf="divVisible">
-    <h2>Your Data <button type="submit" class="btn btn-danger" (click)="onClose()">Close</button></h2>
+    <h2>Your Data <i class="fa fa-times" (click)="onClose()"></i></h2>
     <div class="container">
         <p>Name: {{myName}}</p>
     </div>
